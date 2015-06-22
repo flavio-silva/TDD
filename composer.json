@@ -1,0 +1,12 @@
+{    
+    "require": {
+        "phpunit/phpunit": "4.2.6",
+        "pimple/pimple": "*"
+    },
+    "autoload": {
+        "psr-0" : {"TDD" : "src/"}
+    },
+    "config" : {
+        "bin-dir" : "bin/"
+    }
+}
