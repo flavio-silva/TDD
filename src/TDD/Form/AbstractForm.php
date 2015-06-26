@@ -2,7 +2,7 @@
 
 namespace TDD\Form;
 
-abstract class AbstractForm implements FormInterface, PopulateInterface
+abstract class AbstractForm implements FormInterface, PopulateInterface, InputInterface
 {    
     protected $attributes = [];
     /**

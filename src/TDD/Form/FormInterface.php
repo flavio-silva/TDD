@@ -10,11 +10,4 @@ interface FormInterface
     
     function getField($name);
     
-    function setName($name);
-    
-    function getName();
-    
-    function setAttribute($name, $value);
-    
-    function getAttribute($name);
 }

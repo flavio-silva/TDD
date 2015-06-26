@@ -22,6 +22,8 @@ class AbstractFormTest extends \PHPUnit_Framework_TestCase
     public function testVerificaSeAClasseAbstracImplentaInterfaceCorreta()
     {
         $this->assertInstanceOf('TDD\Form\FormInterface', $this->abstractForm);
+        $this->assertInstanceOf('TDD\Form\InputInterface', $this->abstractForm);
+        $this->assertInstanceOf('TDD\Form\PopulateInterface', $this->abstractForm);
     }
     
     public function testVerificaSeOSetEGetNameFuncionam()
