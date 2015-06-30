@@ -136,4 +136,115 @@ class AbstractFormTest extends \PHPUnit_Framework_TestCase
     {
         $this->abstractForm->getValue();
     }
+
+    public function testVerificaSeOMetodoCreateFieldFunciona()
+    {
+
+        $input = [
+            'name' => 'input',
+            'type' => '\TDD\Form\InputText',
+            'attributes' => [
+                'value' => 10
+            ]
+        ];
+
+        $result = $this->abstractForm->createField($input);
+        
+        $this->assertInstanceOf('\TDD\Form\InputInterface', $result);
+        $this->assertEquals('input', $result->getName());
+        $this->assertEquals(10, $result->getValue());
+    }
+    
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testVerificaSeOMetodoCreateFieldLancaUmaExcessaoQuandoNaoTemOType()
+    {
+        $input = [
+            'name' => 'input',
+            'attributes' => [
+                'value' => 10
+            ]
+        ];
+        
+        $result = $this->abstractForm->createField($input);
+    }
+    
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testVerificaSeOMetodoCreateFieldLancaUmaExcessaoQuandoNaoTemOName()
+    {
+        $input = [
+            'type' => '\TDD\Form\InputText',
+            'attributes' => [
+                'value' => 10
+            ]
+        ];
+        
+        $result = $this->abstractForm->createField($input);
+    }
+    
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testVerificaSeOMetodoCreateFieldLancaUmaExcessaoQuandoAClasseNoTypeNaoExiste()
+    {
+        $input = [
+            'name' => 'input',
+            'type' => '\TDD\Form\InputNumber',
+            'attributes' => [
+                'value' => 10
+            ]
+        ];
+        
+        $result = $this->abstractForm->createField($input);
+    }
+    
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testVerificaSeOMetodoCreateFieldLancaUmaExcessaoQuandoAClasseNoTypeNaoImplementaInterfaceCorreta()
+    {
+        $input = [
+            'name' => 'input',
+            'type' => '\TDD\Request\Request',
+            'attributes' => [
+                'value' => 10
+            ]
+        ];
+        
+        $result = $this->abstractForm->createField($input);
+    }
+    
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testVerificaSeOMetodoCreateFieldLancaUmaExcessaoQuandoAKeyAttributesNaoForUmArray()
+    {
+        $input = [
+            'name' => 'input',
+            'type' => '\TDD\Form\InputText',
+            'attributes' => 10
+        ];
+        
+        $result = $this->abstractForm->createField($input);
+    }
+    
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testVerificaSeOMetodoCreateFieldLancaUmaExcessaoQuandoAKeyValueOptionsNaoForUmArray()
+    {
+        $input = [
+            'name' => 'input',
+            'type' => '\TDD\Form\Select',
+            'attributes' => [
+                'value' => 10
+            ],
+            'value_options' => 'any value'
+        ];
+        
+        $result = $this->abstractForm->createField($input);
+    }
 }

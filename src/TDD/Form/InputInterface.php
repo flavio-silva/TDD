@@ -15,4 +15,6 @@ interface InputInterface
     function setAttribute($name, $value);
     
     function getAttribute($name);
+    
+    function getAttributes();
 }

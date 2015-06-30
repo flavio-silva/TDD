@@ -24,9 +24,55 @@ abstract class AbstractForm implements FormInterface, PopulateInterface, InputIn
         return $this->fields[$name];
     }
     
-    public function createField($element)
+    public function createField(array $element)
     {
-        
+        if(!array_key_exists('type', $element)) {
+
+            throw new \InvalidArgumentException('The key "type" does not exist');
+
+        }
+
+        if(!array_key_exists('name', $element)) {
+
+            throw new \InvalidArgumentException('The key "name" does not exist');
+
+        }
+
+        if(!class_exists($element['type'])) {
+            throw new \InvalidArgumentException('The classe named ' . $element['type'] . 'does not exist');            
+        }
+
+        $input = new $element['type']($element['name']);
+
+
+        if(!$input instanceof InputInterface) {
+            throw new \InvalidArgumentException('The class must be of InputInterface type');
+            
+        }
+
+        if(array_key_exists('attributes', $element)) {
+            
+            if(!is_array($element['attributes'])) {
+                throw new \InvalidArgumentException;
+            }
+
+            foreach($element['attributes'] as $name => $value) {
+                $input->setAttribute($name, $value);
+            }
+        }
+
+
+        if($input instanceof SelectInterface && array_key_exists('value_options', $element)) {
+
+            if(!is_array($element['value_options'])) {
+                throw new \InvalidArgumentException('The key "value_options" is not an array');
+            }
+
+            $input->setValueOptions($element['value_options']);
+        }
+
+        return $input;
+
     }
 
     public function getAttribute($name)
@@ -85,4 +131,10 @@ abstract class AbstractForm implements FormInterface, PopulateInterface, InputIn
 
         
     }
+    
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
 }

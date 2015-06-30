@@ -4,7 +4,7 @@ namespace TDD\Form;
 
 interface FormInterface
 {
-    function createField($element);
+    function createField(array $element);
     
     function addField(FormInterface $element);
     
