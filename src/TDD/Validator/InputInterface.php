@@ -12,4 +12,6 @@ interface InputInterface
     function getValue();
     
     function isValid();
+
+    function getMessage();
 }

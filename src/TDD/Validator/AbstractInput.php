@@ -6,7 +6,8 @@ abstract class AbstractInput implements InputInterface
 {
     protected $name;
     protected $value;
-    
+    protected $message;
+
     public function __construct($name)
     {
         $this->name = $name;
@@ -32,4 +33,8 @@ abstract class AbstractInput implements InputInterface
         $this->value = $value;
     }
     
+    public function getMessage()
+    {
+        return $this->message;
+    }
 }

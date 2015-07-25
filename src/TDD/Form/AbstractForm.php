@@ -13,6 +13,7 @@ abstract class AbstractForm implements FormInterface, PopulateInterface, InputIn
     public function addField(FormInterface $element)
     {
         $this->fields[$element->getName()] = $element;
+        return $this;
     }
 
     public function getField($name)

@@ -1,0 +1,19 @@
+<h3 class="text-left">Formulario de Exemplo</h3>
+<?= $di['form.helper']->openTag($form)?>
+<h5 class="text-info">Nome</h5>
+<?=$di['input.helper']->render($form->getField('nome'))?>
+<h5 class="text-info">Valor</h5>
+<?=$di['input.helper']->render($form->getField('valor'))?>
+<h5 class="text-info">Descrição</h5>
+<?=$di['input.helper']->render($form->getField('descricao'))?>
+<h5 class="text-info">Categoria</h5>
+<?=$di['select.helper']->render($form->getField('categoria'))?>
+<br /><br />
+<input type="submit" name="enviar" value="Enviar" class="btn btn-info" />
+<?= $di['form.helper']->closeTag()?>
+
+<ul>
+    <?php foreach ($messages as $key => $value):?>
+    <li><?= $key?>: <?= $value?></li>
+    <?php endforeach;?>
+</ul>

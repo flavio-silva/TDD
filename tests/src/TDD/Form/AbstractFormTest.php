@@ -247,4 +247,5 @@ class AbstractFormTest extends \PHPUnit_Framework_TestCase
         
         $result = $this->abstractForm->createField($input);
     }
+    
 }

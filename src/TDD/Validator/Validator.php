@@ -8,10 +8,12 @@ class Validator implements ValidatorInterface
      * @var array | InputInterface
      */
     protected $inputs = [];
+    protected $messages = [];
     
     public function add(InputInterface $input)
     {
         $this->inputs[$input->getName()] = $input;
+        return $this;
     }
 
     public function isValid()
@@ -19,6 +21,7 @@ class Validator implements ValidatorInterface
         foreach ($this->inputs as $input ) {
             
             if(!$input->isValid()) {
+                $this->messages[$input->getName()] = $input->getMessage();
                 return false;
             }
         }
@@ -58,6 +61,11 @@ class Validator implements ValidatorInterface
         }
         
         return $this->inputs[$name];
+    }
+
+    public function getMessages()
+    {
+        return $this->messages;
     }
 
 }

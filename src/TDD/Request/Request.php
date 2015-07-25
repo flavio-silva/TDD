@@ -24,4 +24,18 @@ class Request implements RequestInterface
         }
         return false;
     }
+
+    public function getPost()
+    {
+        if(isset($_POST)) {
+            return $_POST;
+        }
+    }
+
+    public function getGet()
+    {
+        if(isset($_GET)) {
+            return $_GET;
+        }
+    }
 }

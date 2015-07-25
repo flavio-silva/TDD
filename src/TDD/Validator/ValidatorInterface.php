@@ -13,4 +13,6 @@ interface ValidatorInterface
     function remove($name);
     
     function populate(array $data);
+
+    function getMessages();
 }

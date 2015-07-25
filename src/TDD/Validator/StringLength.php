@@ -4,8 +4,8 @@ namespace TDD\Validator;
 
 class StringLength extends AbstractInput
 {
-    protected $max;
-    protected $min;
+    protected $max = 255;
+    protected $min = 0;
     
     public function getMax()
     {
@@ -53,6 +53,10 @@ class StringLength extends AbstractInput
             if(!(mb_strlen($str) <= $this->getMax())) {
                 $return = false;
             }
+        }
+
+        if(!$return) {
+            $this->message = "The length value must be between {$this->getMin()} and {$this->getMax()}";
         }
         
         return $return;

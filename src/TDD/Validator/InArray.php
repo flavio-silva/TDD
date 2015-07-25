@@ -22,6 +22,7 @@ class InArray extends AbstractInput
             return true;
         }
         
+        $this->message = "The value {$this->getValue()} is not valid";
         return false;
     }
 }

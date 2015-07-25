@@ -12,8 +12,11 @@ class FormHelperTest extends \PHPUnit_Framework_TestCase
             
     public function setUp()
     {
+        $validator = $this->getMockBuilder('\TDD\Validator\Validator')
+                ->disableOriginalConstructor()
+                ->getMock();
         $this->helper = new FormHelper();
-        $this->form = new Form('contact');
+        $this->form = new Form('contact', $validator);
     }
     
     public function tearDown()

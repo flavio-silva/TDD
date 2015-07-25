@@ -2,9 +2,14 @@
 
 namespace TDD\Form;
 
-class Select extends Form implements SelectInterface
+class Select extends AbstractForm implements SelectInterface
 {
-    protected $options;
+    protected $options = [];
+    
+    public function __construct($name)
+    {
+        $this->attributes['name'] = $name;
+    }
     
     public function getValueOptions()
     {
