@@ -18,15 +18,15 @@ class Validator implements ValidatorInterface
 
     public function isValid()
     {
+        $return = true;
         foreach ($this->inputs as $input ) {
             
             if(!$input->isValid()) {
                 $this->messages[$input->getName()] = $input->getMessage();
-                return false;
+                $return = false;
             }
         }
-        
-        return true;
+        return $return;
     }
 
     public function populate(array $data)

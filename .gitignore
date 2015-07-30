@@ -2,3 +2,8 @@ nbproject/
 bin/
 composer.phar
 vendor/
+.buildpath
+.project
+.settings/
+chromedriver.exe
+selenium-server-standalone-2.46.0.jar
